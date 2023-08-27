@@ -1,22 +1,14 @@
-const Card = ({characters, onClose}) => {
+const Card = ({id, name, status, species, gender, image, onClose}) => {
    return (
-      <>
-         {
-            characters.map(character => {
-               return (
-                  <div key={character.id}>
-                     <button onClick={onClose}>X</button>
-                     <h2>{character.name}</h2>
-                     <h2>{character.status}</h2>
-                     <h2>{character.species}</h2>
-                     <h2>{character.name.origin}</h2>
-                     <h2>{character.gender}</h2>
-                     <img src={character.image} alt={character.name} />
-                  </div>
-               )
-            })
-         }
-      </>
+      <div>
+         <button onClick={() => onClose(id)}>X</button>
+         <h2>{name}</h2>
+         <h2>{status}</h2>
+         <h2>{species}</h2>
+         <h2>{name.origin}</h2>
+         <h2>{gender}</h2>
+         <img src={image} alt={name} />
+      </div>
    );
 }
 
