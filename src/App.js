@@ -83,7 +83,7 @@ const App = () => {
       }
    }
 
-   const logout = (logut) => {
+   const logout = (logout) => {
       setAccess(!logout);
       storage.clear();
       navigate('/');
