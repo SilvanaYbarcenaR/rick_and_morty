@@ -1,17 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate, useNavigate} from 'react-router-dom';
 
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav.jsx';
-import About from './pages/About';
 import Detail from './components/Detail';
+import Form from './components/Form';
+import About from './pages/About';
 import Error from './pages/Error/Error';
 
 const App = () => {
    const [characters, setCharacters] = useState([]);
    const [cache, setCache] = useState([]);
+   const [access, setAccess] = useState(false);
+   const currentPath = useLocation();
+   const navigate = useNavigate();
+   const storage = sessionStorage;
+   const EMAIL = "silvana.ybarcena@gmail.com";
+   const PASSWORD = "sayr2207";
 
    /* const onSearch = () => {
       const example = {
@@ -67,16 +74,38 @@ const App = () => {
 		);
       setCache(cacheFiltered);
    }
+   
+   const login = (userData) => {
+      if (userData.password === PASSWORD && userData.email === EMAIL) {
+         setAccess(true);
+         storage.setItem('auth', JSON.stringify({...userData, auth: true}));
+         navigate('/home');
+      }
+   }
+
+   const logout = (logut) => {
+      setAccess(!logout);
+      storage.clear();
+      navigate('/');
+   }
+
+   useEffect(() => {
+      if(storage.length === 0) {
+         !access && navigate('/');
+      }
+   }, [access]);
 
    return (
       <div className='App'>
          <div className="space"></div>
-         <Nav onSearch={onSearch} randomHandler={randomHandler} />
+         {(currentPath.pathname !== "/" && currentPath.pathname !== "/error") && <Nav onSearch={onSearch} randomHandler={randomHandler} logout={logout} />}
          <Routes>
+            <Route path="/" element={<Form login={login}/>} />
             <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
             <Route path="/about" element={<About/>} />
             <Route path="/detail/:id" element={<Detail/>} />
-            <Route path=":error" element={<Error/>} />
+            <Route path="/error" element={<Error/>} />
+            <Route path="*" element={<Navigate to='/error'/>} />
          </Routes>
       </div>
    );
