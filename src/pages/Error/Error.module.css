@@ -1,0 +1,38 @@
+/* Error page */
+.errorContainer {
+    color: #ffffff;
+}
+
+.error404 {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.error404 span {
+    font-size: 18rem;
+    font-weight: bold;
+}
+
+.error404 img {
+    margin: 0 -5rem;
+    animation: zoom 0.8s cubic-bezier(1,5,1,1) forwards;
+    width: 25rem;
+    z-index: 2;
+}
+
+.errorContainer p {
+    font-weight: bold;
+    font-style: italic;
+}
+
+@keyframes zoom {
+    from {
+        transform: rotate(0) scale(0.2);
+        opacity: 0;
+    }
+    to {
+       transform: rotate(360deg) scale(1);
+       opacity: 1;
+    }
+}
