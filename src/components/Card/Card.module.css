@@ -1,5 +1,5 @@
 /* Cards */
-.close {
+.card .close {
     background-color: #043c6e;
     color: #ffffff;
     height: 30px;
@@ -10,12 +10,22 @@
     width: 30px;
     z-index: 2;
 }
-.close span {
+.card .close span {
     display: block;
     transition: all 0.4s ease-in-out;
 }
-.close:hover span {
+.card .close:hover span {
     transform: rotate(180deg);
+}
+.card .favorite {
+    background-color: #b992ff;
+    border-radius: 500%;
+    height: 30px;
+    left: 5px;
+    position: absolute;
+    top: 5px;
+    width: 30px;
+    z-index: 2;
 }
 .card {
     background: #ffffff;
@@ -54,6 +64,7 @@
     font-size: 0.9rem;
     margin-bottom: 0;
     max-width: 83%;
+    min-width: 100px;
     padding: 0.5rem 1rem;
     position: relative;
     text-shadow: 2px 2px 4px #589b38;

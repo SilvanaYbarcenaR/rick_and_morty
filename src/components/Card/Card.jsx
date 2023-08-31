@@ -1,10 +1,46 @@
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import cardStyles from "./Card.module.css";
+import { addFav, removeFav } from "../../redux/actions";
+import { useState, useEffect } from "react";
 
-const Card = ({id, name, status, species, gender, image, onClose}) => {
+const Card = ({id, name, species, gender, image, onClose, addFav, removeFav, myFavorites}) => {
+   const [isFav, setIsFav] = useState(false);
+   
+   const handleFavorite = (remove) => {
+      if(isFav && remove) {
+         setIsFav(false);
+         removeFav(id);
+      } else {
+         setIsFav(true);
+         addFav({id, name, species, gender, image})
+      }
+   }
+
+   const handleClose = (id) => {
+      setIsFav(false);
+      removeFav(id);
+      onClose(id);
+   }
+
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+   }, [myFavorites, id, onClose]);
+
    return (
       <div className={cardStyles.card}>
-         <button className={cardStyles.close} onClick={() => onClose(id)}><span>X</span></button>
+         {
+            isFav ? (
+               <button className={cardStyles.favorite} onClick={handleFavorite}>❤️</button>
+            ) : (
+               <button className={cardStyles.favorite} onClick={handleFavorite}>🤍</button>
+            )
+         }
+         {onClose && <button className={cardStyles.close} onClick={() => handleClose(id)}><span>X</span></button>}
          <NavLink to={`/detail/${id}`}>
             <div><img src={image} alt={name} /></div>
             <h2>{name}</h2>
@@ -17,4 +53,20 @@ const Card = ({id, name, status, species, gender, image, onClose}) => {
    );
 }
 
-export default Card;
+const mapStateToProps = (state) => {
+   return {
+      myFavorites: state.myFavorites
+   }
+}
+
+const mapDispacthToProps = (dispatch) => {
+   return {
+      addFav: (character) => dispatch(addFav(character)),
+      removeFav: (id) => dispatch(removeFav(id))
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispacthToProps
+)(Card);

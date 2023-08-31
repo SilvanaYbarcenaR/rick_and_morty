@@ -1,6 +1,11 @@
 /* Error page */
 .errorContainer {
+    align-items: center;
     color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 88vh;
+    justify-content: center;
 }
 
 .error404 {

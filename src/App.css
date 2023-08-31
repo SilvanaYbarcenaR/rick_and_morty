@@ -58,7 +58,7 @@ button a:hover {
    color: #ffffff;
    min-height: 100vh;
    overflow: hidden;
-   padding-bottom: 2rem;
+   padding: 0 5%;
    position: relative;
    text-align: center;
 }
@@ -86,4 +86,10 @@ button a:hover {
    to {
       transform: rotate(-360deg);
    }
+}
+
+@media  screen and (max-width: 575px) {
+   html {
+      font-size: 13px;
+  }
 }

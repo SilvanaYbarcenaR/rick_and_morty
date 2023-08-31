@@ -1,0 +1,20 @@
+/* Nav */
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    width: 100%;
+}
+.header .leftHeader a {
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 1rem 1.5rem;
+    padding: 0.5rem 0;
+}
+.header .leftHeader a:first-child {
+    margin-left: 0;
+}
+.header .rightHeader {
+    display: flex;
+}

@@ -5,18 +5,16 @@ const Cards = ({characters, onClose}) => {
    return (
       <div className={cardsStyle.cardsContainer}>
          {
-            characters.map(({ id, name, status, species, gender, origin, image}) => {
+            characters.map(({ id, name, species, gender, image}) => {
                return (
                   <Card
                      key={id} 
                      id={id}  
                      name={name}
-                     status={status}
                      species={species}
                      gender={gender}
                      image={image}
-                     origin={origin.name}
-                     onClose={onClose} 
+                     onClose={onClose && onClose} 
                   />
                )
             })

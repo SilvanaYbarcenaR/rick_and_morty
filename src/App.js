@@ -4,16 +4,18 @@ import { Routes, Route, useLocation, Navigate, useNavigate} from 'react-router-d
 
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
-import Nav from './components/Nav.jsx';
-import Detail from './components/Detail';
-import Form from './components/Form';
-import About from './pages/About';
-import Error from './pages/Error/Error';
+import Nav from './components/Nav/Nav.jsx';
+import Detail from './views/Detail';
+import Login from './views/Login/Login';
+import About from './views/About';
+import Error from './views/Error/Error';
+import Favorites from './views/Favorites';
 
 const App = () => {
    const [characters, setCharacters] = useState([]);
    const [cache, setCache] = useState([]);
    const [access, setAccess] = useState(false);
+   const [errorLogin, setErrorLogin] = useState("");
    const currentPath = useLocation();
    const navigate = useNavigate();
    const storage = sessionStorage;
@@ -80,6 +82,8 @@ const App = () => {
          setAccess(true);
          storage.setItem('auth', JSON.stringify({...userData, auth: true}));
          navigate('/home');
+      } else {
+         setErrorLogin("Incorrect credentials");
       }
    }
 
@@ -93,18 +97,19 @@ const App = () => {
       if(storage.length === 0) {
          !access && navigate('/');
       }
-   }, [access]);
+   }, [access, navigate, storage.length]);
 
    return (
       <div className='App'>
          <div className="space"></div>
          {(currentPath.pathname !== "/" && currentPath.pathname !== "/error") && <Nav onSearch={onSearch} randomHandler={randomHandler} logout={logout} />}
          <Routes>
-            <Route path="/" element={<Form login={login}/>} />
+            <Route path="/" element={<Login login={login} errorLogin={errorLogin}/>} />
             <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
             <Route path="/about" element={<About/>} />
-            <Route path="/detail/:id" element={<Detail/>} />
-            <Route path="/error" element={<Error/>} />
+            <Route path="/detail/:id" element={<Detail/>}/>
+            <Route path="/favorites" element={<Favorites/>}/>
+            <Route path="/error" element={<Error/>}/>
             <Route path="*" element={<Navigate to='/error'/>} />
          </Routes>
       </div>

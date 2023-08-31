@@ -2,7 +2,6 @@
 .cardsContainer {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 5%;
-    max-height: 72vh;
+    max-height: calc(100vh - 15rem);
     overflow: auto;
 }
