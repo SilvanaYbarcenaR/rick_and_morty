@@ -7,9 +7,9 @@ import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav.jsx';
 import Detail from './views/Detail';
 import Login from './views/Login/Login';
-import About from './views/About';
+import About from './views/About/About';
 import Error from './views/Error/Error';
-import Favorites from './views/Favorites';
+import Favorites from './views/Favorites/Favorites';
 
 const App = () => {
    const [characters, setCharacters] = useState([]);
@@ -97,7 +97,7 @@ const App = () => {
       if(storage.length === 0) {
          !access && navigate('/');
       }
-   }, [access, navigate, storage.length]);
+   }, [access]);
 
    return (
       <div className='App'>

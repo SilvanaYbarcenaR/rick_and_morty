@@ -19,11 +19,14 @@ const Detail = () => {
     
     return (
         <div>
+            <br/>
             <h1>{character.name}</h1>
+            <br/>
             <p>STATUS | {character.status}</p>
             <p>GENDER | {character.gender}</p>
             <p>SPECIE | {character.species}</p>
             <p>ORIGIN | {character.origin?.name}</p>
+            <br/><br/>
             <div>
                 <img src={character.image} alt={character.name} />
             </div>

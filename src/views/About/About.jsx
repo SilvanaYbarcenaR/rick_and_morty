@@ -1,6 +1,8 @@
+import styleAbout from "./About.module.css"
+
 const About = () => {
     return (
-        <div>
+        <div className={styleAbout.aboutContainer}>
             <h1>Silvana Andrea Ybárcena Rosas</h1>
             <p>
                 Soy una mujeremprendedora,me gustan los retos,ya que representan una oportunidad de aprendizaje y de crecimiento no solo profesionalmente sino de manera personal también.

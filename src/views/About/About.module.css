@@ -1,0 +1,9 @@
+/* About */
+.aboutContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 15rem);
+    justify-content: center;
+    margin: 0 15%;
+}

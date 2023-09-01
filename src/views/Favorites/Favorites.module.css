@@ -1,0 +1,9 @@
+/* Favorites */
+.favContainer select {
+    height: 2rem;
+    background: transparent;
+    color: #ffffff;
+    padding: 0 0.8rem;
+    border: 1px solid #ffffff;
+    margin: 0 1rem;
+}
