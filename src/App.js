@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Routes, Route, useLocation, Navigate, useNavigate} from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
@@ -21,6 +21,9 @@ const App = () => {
    const storage = sessionStorage;
    const EMAIL = "silvana.ybarcena@gmail.com";
    const PASSWORD = "sayr2207";
+   const location = useLocation();
+
+   const classUrl = location.pathname.slice(1);
 
    /* const onSearch = () => {
       const example = {
@@ -81,6 +84,7 @@ const App = () => {
       if (userData.password === PASSWORD && userData.email === EMAIL) {
          setAccess(true);
          storage.setItem('auth', JSON.stringify({...userData, auth: true}));
+         setErrorLogin("");
          navigate('/home');
       } else {
          setErrorLogin("Incorrect credentials");
@@ -100,7 +104,7 @@ const App = () => {
    }, [access]);
 
    return (
-      <div className='App'>
+      <div className={`App ${classUrl}`}>
          <div className="space"></div>
          {(currentPath.pathname !== "/" && currentPath.pathname !== "/error") && <Nav onSearch={onSearch} randomHandler={randomHandler} logout={logout} />}
          <Routes>

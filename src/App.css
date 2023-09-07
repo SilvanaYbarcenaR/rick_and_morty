@@ -22,9 +22,25 @@
    background-color: rgba(255,255,255,0.1);
    border-radius: 10px;
 }
+.App {
+   cursor: url("./assets/error.jpg"), auto;
+}
 
 a {
    text-decoration: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 button {
@@ -50,11 +66,17 @@ button a:hover {
 
 .App {
    background-attachment: fixed;
-   background-color: #000000;
-   background-image: url("./assets/background.png");
-   background-position: center -4%;
+   /* background: url("./assets/background.png"), linear-gradient(172deg, #240a50 15%, #000000 70%); */
+   /* background: url("./assets/background-app.png"), radial-gradient(circle at 32%, #351a53,#000000 56%, #646464 74.5%, #000000 75%); */
+   /* background: url("./assets/background.png"), radial-gradient(circle at 49%, #180b2e,#000000 56%, #a1a1a1 81.5%, #000000 75%); */
+   /* background: url(http://localhost:3000/static/media/background-app.285ec6a….png), radial-gradient(circle at 50%, #351a53,#000000 56%, #9C27B0 101.5%, #000000 75%); */
+   /* background: radial-gradient(circle at 50%, #351a53,#000000 56%, #520060 101.5%, #000000 75%); */
+   background: radial-gradient(circle at 50%, #351a53,#000000 56%, #520060 101.5%, #000000 75%); 
+  background-size: 300% 300%;
+  animation: gradient 15s ease infinite; 
+   /* background-position: center 0;
    background-repeat: no-repeat;
-   background-size: cover;
+   background-size: cover; */
    color: #ffffff;
    min-height: 100vh;
    overflow: hidden;
@@ -62,6 +84,18 @@ button a:hover {
    position: relative;
    text-align: center;
 }
+
+@keyframes gradient {
+   0% {
+     background-position: 0% 50%;
+   }
+   50% {
+     background-position: 100% 50%;
+   }
+   100% {
+     background-position: 0% 50%;
+   }
+ }
 
 .space {
    position: absolute;

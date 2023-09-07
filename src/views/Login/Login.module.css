@@ -1,6 +1,6 @@
 /* Login */
 .error {
-    color: #76b13e;
+    color: #3bffec;
     font-size: 0.8rem;
     margin-top: 0;
 }
@@ -15,13 +15,13 @@
     margin-top: 0;
 }
 .loginContainer .loginText {
-    margin-top: -8%;
+    margin-top: -3%;
     max-width: 80%;
-    width: 500px;
+    width: 28rem;
 }
 .loginContainer .loginImage {
-    background-color: #ffffff;
-    border: 1.3rem solid #000000;
+    background-color: transparent;
+    border: 0.6rem solid transparent;
     border-radius: 50%;
     margin-top: -1.8%;
     max-width: 35%;
@@ -36,9 +36,20 @@
     display: block;
     margin-top: -3rem;
     max-width: 100%;
+    overflow: hidden;
     padding: 4.5rem 2.5rem 2.5rem;
     position: relative;
     width: 28rem;
+}
+.loginContainer form::before {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    content: " ";
+    height: 7rem;
+    left: calc(50% - 3.5rem);
+    position: absolute;
+    top: -4.2rem;
+    width: 7rem;
 }
 .loginContainer form label {
     color: #ffffff;
@@ -55,10 +66,15 @@
     margin-bottom: 1.2rem;
     padding: 0.5rem 1.2rem;
     text-align: center;
+    transition: all 0.34s ease-in-out;
     width: 100%;
 }
+.loginContainer form input:focus-visible {
+    box-shadow: 0px 2px 2px #bd77fe;
+    outline: none;
+}
 .loginContainer form button {
-    background-color: #02afc7;
+    background-color: #8a2be2;
     border-radius: 1.5rem;
     font-weight: 900;
     height: 2.5rem;
@@ -70,4 +86,10 @@
 .loginContainer .test {
     color: #ffffff;
     font-size: 0.6rem;
+}
+
+@media screen and (max-width: 575px) {
+    .loginContainer form {
+        padding: 4rem 1.5rem 1rem;
+    }
 }
