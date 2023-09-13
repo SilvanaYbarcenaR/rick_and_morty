@@ -7,14 +7,21 @@
     padding: 1.5rem 0;
     width: 100%;
 }
+.header .leftHeader {
+    align-items: center;
+    display: flex;
+}
 .header .leftHeader a {
     color: #ffffff;
-    text-transform: uppercase;
     margin: 1rem 1.5rem;
     padding: 0.5rem 0;
+    text-transform: uppercase;
 }
 .header .leftHeader a:first-child {
     margin-left: 0;
+}
+.header .leftHeader .imgHeader {
+    max-width: 200px;
 }
 .header .rightHeader {
     display: flex;

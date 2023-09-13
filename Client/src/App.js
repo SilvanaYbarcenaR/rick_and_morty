@@ -19,8 +19,6 @@ const App = () => {
    const currentPath = useLocation();
    const navigate = useNavigate();
    const storage = sessionStorage;
-   const EMAIL = "silvana.ybarcena@gmail.com";
-   const PASSWORD = "sayr2207";
    const location = useLocation();
 
    const classUrl = location.pathname.slice(1);
@@ -72,44 +70,55 @@ const App = () => {
 
    const onClose = (id) => {
       const charactersFiltered = characters.filter (
-			character => character.id !== Number(id)
+			character => character.id !== id
 		);
       setCharacters(charactersFiltered);
       const cacheFiltered = cache.filter (
-			cacheEl => cacheEl.id !== Number(id)
+			cacheEl => cacheEl.id !== id
 		);
       setCache(cacheFiltered);
    }
    
    const login = (userData) => {
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
+      /* if (userData.password === PASSWORD && userData.email === EMAIL) {
          setAccess(true);
          storage.setItem('auth', JSON.stringify({...userData, auth: true}));
          setErrorLogin("");
          navigate('/home');
       } else {
          setErrorLogin("Incorrect credentials");
-      }
+      } */
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(
+         ({ data }) => {
+            const { access } = data;
+            setAccess(data);
+            storage.setItem('auth', JSON.stringify({auth: true}));
+            access && navigate('/home');
+         },
+         (error) => setErrorLogin("Incorrect credentials")
+      );
    }
 
    const logout = (logout) => {
       setAccess(!logout);
       storage.clear();
-      navigate('/');
+      navigate('/login');
    }
 
    useEffect(() => {
-      if(storage.length === 0) {
-         !access && navigate('/');
+      if(storage.auth === true) {
+         !access && navigate('/login');
       }
    }, [access]);
 
    return (
       <div className={`App ${classUrl}`}>
          <div className="space"></div>
-         {(currentPath.pathname !== "/" && currentPath.pathname !== "/error") && <Nav onSearch={onSearch} randomHandler={randomHandler} logout={logout} />}
+         {(currentPath.pathname !== "/login" && currentPath.pathname !== "/error") && <Nav onSearch={onSearch} randomHandler={randomHandler} logout={logout} />}
          <Routes>
-            <Route path="/" element={<Login login={login} errorLogin={errorLogin}/>} />
+            <Route path="/login" element={<Login login={login} errorLogin={errorLogin}/>} />
             <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
             <Route path="/about" element={<About/>} />
             <Route path="/detail/:id" element={<Detail/>}/>

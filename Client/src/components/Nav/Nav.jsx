@@ -8,7 +8,7 @@ const Nav = ({onSearch, randomHandler, logout}) => {
     return(
         <header className={styleNav.header}>
             <div className={styleNav.leftHeader}>
-            <img src={RMText} alt="Rick and Morty"/>
+            <img className={styleNav.imgHeader} src={RMText} alt="Rick and Morty"/>
                 <NavLink to="/home" style={({isActive}) => isActive ? {borderBottom: '2px solid #76b13e', fontWeight: '700'} : {}}>Home</NavLink>
                 <NavLink to="/about" style={({isActive}) => isActive ? {borderBottom: '2px solid #76b13e', fontWeight: '700'} : {}}>About</NavLink>
                 <NavLink to="/favorites" style={({isActive}) => isActive ? {borderBottom: '2px solid #76b13e', fontWeight: '700'} : {}}>Favorites</NavLink>

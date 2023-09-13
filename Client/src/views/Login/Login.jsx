@@ -3,6 +3,7 @@ import validation from "../../helpers/validation";
 import styleLogin from "./Login.module.css";
 import loginImage from "../../assets/rick-color.png";
 import loginText from "../../assets/rick_morty.png";
+import loginGif from "../../assets/rm-animation.gif";
 
 const Login = ({login, errorLogin}) => {
     const [errorVisibility, setErrorVisibility] = useState(false)
@@ -49,6 +50,7 @@ const Login = ({login, errorLogin}) => {
     return (
         <div className={styleLogin.loginContainer}>
             <img src={loginText} alt="Rick and Morty" className={styleLogin.loginText}/>
+            <img src={loginGif} alt="Rick and Morty" className={styleLogin.loginText}/>
             <img src={loginImage} alt="Rick and Morty" className={styleLogin.loginImage}/>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label><br/>
