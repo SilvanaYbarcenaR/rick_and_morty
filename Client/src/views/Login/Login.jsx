@@ -50,7 +50,7 @@ const Login = ({login, errorLogin}) => {
     return (
         <div className={styleLogin.loginContainer}>
             <img src={loginText} alt="Rick and Morty" className={styleLogin.loginText}/>
-            <img src={loginGif} alt="Rick and Morty" className={styleLogin.loginText}/>
+            <img src={loginGif} alt="Rick and Morty" className={styleLogin.loginGif}/>
             <img src={loginImage} alt="Rick and Morty" className={styleLogin.loginImage}/>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label><br/>

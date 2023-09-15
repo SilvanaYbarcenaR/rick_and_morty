@@ -1,7 +1,8 @@
 /* Cards */
 .card .close {
-    background-color: #043c6e;
+    background-color: #0268ff;
     color: #ffffff;
+    font-weight: bold;
     height: 30px;
     position: absolute;
     right: 0;
@@ -28,19 +29,49 @@
     z-index: 2;
 }
 .card {
-    background: #ffffff;
+    animation: fadeIn .3s linear forwards; 
+    background: rgba(255,255,255,0.15);
     border-radius: 8px;
     display: flex;
+    flex: 0 0 17%;
     flex-direction: column;
     margin: 1.5%;
     padding-bottom: 1.2rem;
     position: relative;
     overflow: hidden;
-    flex: 0 0 17%;
+}
+.card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient( var(--rotate) , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+.card::after {
+    position: absolute;
+    content: "";
+    top: calc(65vh / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(65vh / 6));
+    background-image: linear-gradient( var(--rotate) , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
 }
 .card a {
     align-items: center;
-    color: #424242;
+    color: #bebebe;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -50,7 +81,7 @@
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
     max-width: 100%;
-    min-height: 150px;
+    min-height: 250px;
     transition: all 0.4s ease-in-out;
 }
 .card:hover img {
@@ -83,6 +114,17 @@
 }
 .card .cardDescription span {
     font-weight: 500;
+}
+
+@keyframes fadeIn {
+    0%	{ 
+        opacity: 0;
+        transform:  translateY(20px); 
+    }
+    100% { 
+        opacity: 1;
+        transform:  translateY(0);
+    }
 }
 
 @media screen and (max-width: 991px) {

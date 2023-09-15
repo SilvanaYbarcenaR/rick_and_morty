@@ -42,14 +42,14 @@ const App = () => {
       ])
    } */
 
-   const onSearch = (id) => {
+  /*  const onSearch = (id) => {
       if(!cache.includes(id)) {
          setCache([
             ...cache,
-            Number(id)
-         ])
+            id
+         ]) */
          /* axios(`https://rickandmortyapi.com/api/character/${id}`) */
-         axios(`http://localhost:3001/rickandmorty/character/${id}`)
+         /* axios(`http://localhost:3001/rickandmorty/character/${id}`)
             .then(({ data }) => {
                if (data.name) {
                   setCharacters((oldChars) => [...oldChars, data]);
@@ -60,6 +60,27 @@ const App = () => {
             .catch((error) => {
                alert('¡No hay personajes con este ID!');
             })
+      } else {
+         alert("Character was added before");
+      }
+   } */
+
+   const onSearch = async (id) => {
+      try {
+         if(!cache.includes(id)) {
+            const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+            if (data.name) {
+               setCharacters((oldChars) => [...oldChars, data]);
+               setCache([
+                  ...cache,
+                  id
+               ])
+            } 
+         } else {
+            alert("Character was added before");
+         }
+      } catch (error) {
+         alert(error.response.data);
       }
    }
 
@@ -79,7 +100,7 @@ const App = () => {
       setCache(cacheFiltered);
    }
    
-   const login = (userData) => {
+   const login = async (userData) => {
       /* if (userData.password === PASSWORD && userData.email === EMAIL) {
          setAccess(true);
          storage.setItem('auth', JSON.stringify({...userData, auth: true}));
@@ -88,7 +109,7 @@ const App = () => {
       } else {
          setErrorLogin("Incorrect credentials");
       } */
-      const { email, password } = userData;
+      /* const { email, password } = userData;
       const URL = 'http://localhost:3001/rickandmorty/login/';
       axios(URL + `?email=${email}&password=${password}`).then(
          ({ data }) => {
@@ -98,7 +119,19 @@ const App = () => {
             access && navigate('/home');
          },
          (error) => setErrorLogin("Incorrect credentials")
-      );
+      ); */
+      try {
+         const { email, password } = userData;
+         const URL = 'http://localhost:3001/rickandmorty/login/';
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
+         const { access } = data;
+         setAccess(data)
+         storage.setItem('auth', JSON.stringify({auth: true, email}));
+         access && navigate('/home');
+      }
+      catch(error) {
+         setErrorLogin("Incorrect credentials")
+      }
    }
 
    const logout = (logout) => {

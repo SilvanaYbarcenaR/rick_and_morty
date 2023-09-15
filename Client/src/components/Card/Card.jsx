@@ -29,7 +29,7 @@ const Card = ({id, name, species, gender, image, onClose, addFav, removeFav, myF
             setIsFav(true);
          }
       });
-   }, [myFavorites, id, onClose]);
+   }, [myFavorites]);
 
    return (
       <div className={cardStyles.card}>
@@ -42,7 +42,7 @@ const Card = ({id, name, species, gender, image, onClose, addFav, removeFav, myF
          }
          {onClose && <button className={cardStyles.close} onClick={() => handleClose(id)}><span>X</span></button>}
          <NavLink to={`/detail/${id}`}>
-            <div><img src={image} alt={name} /></div>
+            <div><img src={image} alt={name} loading="lazy"/></div>
             <h2>{name}</h2>
             <div className={cardStyles.cardDescription}>
                <h4>Specie: <span>{species}</span></h4>

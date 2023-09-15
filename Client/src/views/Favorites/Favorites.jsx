@@ -7,11 +7,11 @@ import styleFavorites from "./Favorites.module.css"
 
 const Favorites = ({myFavorites}) => {
     const dispatch = useDispatch();
-    const [aux, setAux] = useState(false);
+    /* const [aux, setAux] = useState(false); */
 
     const handleOrder = (e) => {
         dispatch(orderCards(e.target.value));
-        setAux(true);
+        /* setAux(true); */
     }
 
     const handleFilter = (e) => {

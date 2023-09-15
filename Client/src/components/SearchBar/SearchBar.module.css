@@ -1,4 +1,8 @@
 /* Search Bar */
+.searchBar {
+    align-items: center;
+    display: flex;
+}
 .searchBar input {
     background-color: transparent;
     border: 1px solid #ffffff;
@@ -7,18 +11,23 @@
     height: 2rem;
     margin-right: 1rem;
     padding: 0.5rem;
+    width: 6.5rem;
 }
 .searchBar input::placeholder {
     color: #ffffff;
 }
 .searchBar button {
-    background-color: #02afc7;
-    border-radius: 4px;
+    align-items: center;
+    background-color: #8743ff;
+    border-radius: 50%;
     color: #ffffff;
-    font-size: 0.7rem;
+    display: flex;
+    font-size: 1.5rem;
     font-weight: 900;
-    height: 2rem;
+    justify-content: center;
+    height: 2.5rem;
     margin-right: 1rem;
     text-transform: uppercase;
     padding: 0 0.8rem;
+    width: 2.5rem;
 }

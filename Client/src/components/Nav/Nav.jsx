@@ -2,9 +2,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import styleNav from "./Nav.module.css"
 import RMText from "../../assets/rick_morty.png";
+import { FaRandom } from "react-icons/fa";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Nav = ({onSearch, randomHandler, logout}) => {
     const currentPath = useLocation();
+    const email = JSON.parse(sessionStorage.getItem("auth")).email.split("@")[0];
     return(
         <header className={styleNav.header}>
             <div className={styleNav.leftHeader}>
@@ -18,11 +21,12 @@ const Nav = ({onSearch, randomHandler, logout}) => {
                 {currentPath.pathname === "/home" &&
                     <>
                         <SearchBar onSearch={onSearch} />
-                        <button onClick={randomHandler}>Ramdon</button>
+                        <button onClick={randomHandler} className={styleNav.random}><FaRandom /></button>
                     </>
                 }
+                <p>Bienvenid@ {email}</p>
                 <button onClick={() => logout(true)} className={styleNav.logout}>
-                    Logout
+                    <MdOutlineLogout /><span>LOGOUT</span>
                 </button>
             </div>
         </header>
